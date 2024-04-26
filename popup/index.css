@@ -1,0 +1,53 @@
+.ostore-gs-plugin-popup {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.ostore-gs-plugin-popup-add {
+  display: flex;
+  align-items: center;
+}
+
+.ostore-gs-plugin-popup-code {
+  height: 32px;
+  line-height: 30px;
+  padding: 0px 8px;
+  border: 1px solid #d9d9d9;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  outline: none;
+}
+.ostore-gs-plugin-popup-btn {
+  white-space: nowrap;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  padding: 0px 16px;
+  background: #ff6619;
+  cursor: pointer;
+  color: #fff;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.ostore-gs-plugin-popup-list-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000cc;
+  margin-top: 8px;
+}
+
+.ostore-gs-plugin-popup-list-item-content-td,
+.ostore-gs-plugin-popup-list-item-content-td-btn {
+  padding: 3px 6px;
+  font-size: 14px;
+  font-family: 500;
+}
+
+.ostore-gs-plugin-popup-list-item-content-td-btn {
+  background: #f73131;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 4px;
+}

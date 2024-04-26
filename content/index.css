@@ -1,0 +1,20 @@
+/* 采集 */
+.ostore-gs-plugin {
+  background: rgba(0,0,0,.6);
+  border-radius: 12px;
+  padding: 16px;
+  position: fixed;
+  z-index: 999;
+  right: 64px;
+  bottom: 200px;
+  color: #fff;
+  font-family: system-ui;
+
+  cursor: pointer;
+}
+.ostore-gs-plugin-info {
+  transform: translateX(-50px);
+}
+.ostore-gs-plugin-info-td {
+  padding: 2px 6px;  
+}
