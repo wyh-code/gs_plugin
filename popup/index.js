@@ -16,22 +16,25 @@ async function getCodeList() {
 function renderList() {
   const gsString = localStorage.getItem(GS_LIST);
   const myString = localStorage.getItem(MY_LIST);
-  console.log('myString: ', myString)
   if (gsString) {
-    const list = JSON.parse(myString);
-    listContainer.innerHTML = myString ? `
-      <table>
-        <tbody>
-          ${list.map(item => `<tr>
-            ${`
-            <td class='ostore-gs-plugin-popup-list-item-content-td'>${item.name}</td>
-            <td class='ostore-gs-plugin-popup-list-item-content-td'>${item.code}</td>
-            <td class='ostore-gs-plugin-popup-list-item-content-td-btn' data-code="${item.code}">删除</td>
-            `}
-          </tr>`).join('')}
-        </tbody>
-      </table>
-    ` : '请添加股票'
+    if(myString){
+      const list = JSON.parse(myString);
+      listContainer.innerHTML = `
+        <table>
+          <tbody>
+            ${list.map(item => `<tr>
+              ${`
+              <td class='ostore-gs-plugin-popup-list-item-content-td'>${item.name}</td>
+              <td class='ostore-gs-plugin-popup-list-item-content-td'>${item.code}</td>
+              <td class='ostore-gs-plugin-popup-list-item-content-td-btn' data-code="${item.code}">删除</td>
+              `}
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      `;
+    } else {
+      listContainer.innerHTML = '请添加股票';
+    }
 
     // 将数据发送content
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -51,10 +54,13 @@ addBtn.addEventListener('click', () => {
   if (listString) {
     const list = JSON.parse(listString);
     const code = codeInput.value;
-    const gp = list.find(item => item.f12 === code);
+    const gp = list.find(item => {
+      console.log(`${item.f14}: ${item.f12} === ${code}`)
+      return item.f12 === code;
+    });
     if (gp) {
       const myList = myString ? JSON.parse(myString) : [];
-      const target = myList.find(it => gp.code === it.f12);
+      const target = myList.find(it => gp.f12 === it.code);
       if (!target) {
         myList.push({
           code: gp.f12,

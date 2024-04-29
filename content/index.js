@@ -99,9 +99,9 @@ function fetchData() {
   if (ostoreInfo.open) {
     if (!ostoreInfo.isFetchData) {
       ostoreInfo.isFetchData = true;
-      console.log('fetch start')
+      // console.log('fetch start')
       fetch(url).then(res => res.text()).then(res => {
-        console.log('fetch end')
+        // console.log('fetch end')
         ostoreInfo.isFetchData = false;
         const jsonString = res.match(/callback\((.*)\)/)[1];
         const json = JSON.parse(jsonString);
