@@ -79,12 +79,18 @@ function initContainer() {
   ostoreInfo.container = container;
 }
 
-function filterCode(item) {
+function getMyList (){
   const myString = localStorage.getItem(MY_LIST);
   let myList = [];
   if (myString) {
     myList = JSON.parse(myString);
   }
+
+  return myList;
+}
+
+function filterCode(item) {
+  const myList = getMyList();
   const codes = myList.map(it => it.code);
   return codes.includes(item.f12);
 }
@@ -107,18 +113,25 @@ function fetchData() {
         const json = JSON.parse(jsonString);
         const list = json.data.diff;
         const data = list.filter(filterCode);
-        ostoreInfo.data = data;
+        const newData = [];
+        const myList = getMyList();
+        const codes = myList.map(it => it.code);
+        data.forEach((item) => {
+          const index = codes.indexOf(item.f12);
+          newData[index] = item;
+        })
+        ostoreInfo.data = newData;
         renderInfo();
         setTimeout(() => {
           fetchData()
-        }, 500)
+        }, 100)
         // window.requestAnimationFrame();
       })
     }
   } else {
     setTimeout(() => {
       fetchData()
-    }, 500)
+    }, 1000)
     // window.requestAnimationFrame(fetchData);
   }
 }
